@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home - My Expense Tracker{% endblock %}
+
+{% block content %}
+<h1>Welcome to My Expense Tracker</h1>
+
+{% if current_user.is_authenticated %}
+    <h2>Your Expenses</h2>
+    <div class="expense-list">
+        {% for expense in expenses %}
+        <div class="expense">
+            <h2>{{ expense.name }}</h2>
+            <p>{{ expense.amount }} - {{ expense.category }} - {{ expense.date }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Please <a href="login.html">login</a> to view your expenses.</p>
+{% endif %}
+{% endblock %}
